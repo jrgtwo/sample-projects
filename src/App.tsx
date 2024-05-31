@@ -4,12 +4,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-const removeHash = (str) => str.replace('#', '')
+const removeHash = (str: string) => str.replace('#', '')
 
 function App() {
   const [page, setPage] = useState(removeHash(window.location.hash))
 
-  const handleClick = useCallback((event, hash) => {
+  const handleClick = useCallback((event: React.MouseEvent<HTMLElement>, hash: string) => {
     event.preventDefault()
     setPage(removeHash(hash))
   }, [])

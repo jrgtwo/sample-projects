@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
-import { TAB_CARD_LIST } from './config';
-
-const TabMenuItem = (props) => {
+import { TAB_CARD_LIST, TabCardListConfigType } from './config';
+export type TabMenuItemProps = { name: string, itemTopic: string, setTopic: (arg0: string) => void }
+const TabMenuItem = (props: TabMenuItemProps) => {
   const {
     name,
     itemTopic,
@@ -19,7 +19,7 @@ const TabMenuItem = (props) => {
   )
 }
 
-const TabCards = (props) => {
+const TabCards = (props: { topic: string, tabCardList: TabCardListConfigType }) => {
   const {
     topic,
     tabCardList
