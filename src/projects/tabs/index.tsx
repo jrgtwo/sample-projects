@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
-import { TAB_CARD_LIST, TabCardListConfigType } from './config';
-export type TabMenuItemProps = { name: string, itemTopic: string, setTopic: (arg0: string) => void }
+import type { TabCardListConfigType, TabCardListConfigItemType, TabMenuItemProps } from './config';
+import { TAB_CARD_LIST } from './config';
+
 const TabMenuItem = (props: TabMenuItemProps) => {
   const {
     name,
@@ -25,10 +26,10 @@ const TabCards = (props: { topic: string, tabCardList: TabCardListConfigType }) 
     tabCardList
   } = props;
 
-  const [currTab, setCurrTab] = useState(topic)
+  const [currTab, setCurrTab] = useState<TabCardListConfigItemType['component']>(tabCardList[topic]?.component)
 
   useEffect(() => {
-    setCurrTab(tabCardList[topic]?.component || null)
+    setCurrTab(tabCardList[topic]?.component)
   }, [tabCardList, topic])
 
   return (
@@ -43,12 +44,14 @@ const TabCards = (props: { topic: string, tabCardList: TabCardListConfigType }) 
 
 const Tabs = () => {
 
-  const [topic, setTopic] = useState(null)
+  const [topic, setTopic] = useState<string>('')
 
   return (
     <>
       <h1>Tabs</h1>
-      <p>Current Tab is {topic}</p>
+      {topic.length > 0 &&
+        <p>Current Tab is {topic}</p>
+      }
       <menu>
         {
           Object.keys(TAB_CARD_LIST).map((item) => (
@@ -60,11 +63,13 @@ const Tabs = () => {
           ))
         }
       </menu>
-      <section>
-        <TabCards
-          topic={topic}
-          tabCardList={TAB_CARD_LIST} />
-      </section>
+      {topic.length > 0 &&
+        <section>
+          <TabCards
+            topic={topic}
+            tabCardList={TAB_CARD_LIST} />
+        </section>
+      }
     </>
   )
 }
