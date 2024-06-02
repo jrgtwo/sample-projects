@@ -1,0 +1,15 @@
+.board-row {
+  display: flex;
+  gap: 0
+}
+
+.square {
+  background: white;
+  width: 48px;
+  height: 48px;
+  margin-block-end: 0;
+}
+
+.square:hover {
+  cursor: pointer;
+}

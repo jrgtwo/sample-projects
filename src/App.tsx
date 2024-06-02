@@ -1,7 +1,9 @@
 import { useState, useCallback } from 'react'
 import { Tabs } from './projects/tabs'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { TicTacToe } from './projects/tic-tac-toe'
+import { Menu } from './base/Menu'
+import { Header } from './base/Header'
+
 import './App.css'
 
 const removeHash = (str: string) => str.replace('#', '')
@@ -16,21 +18,13 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Projects</h1>
-      <menu>
-        <li><a href="#tabs" onClick={(event) => handleClick(event, '#tabs')}>Tabs</a></li>
-      </menu>
-      <div className="card">
-        {page}
+      <Header />
+      <Menu
+        handleClick={handleClick}
+      />
+      <div id="card-container">
         {page === 'tabs' && <Tabs />}
+        {page === 'tic-tac-toe' && <TicTacToe />}
       </div>
     </>
   )
