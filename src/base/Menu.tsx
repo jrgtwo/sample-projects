@@ -8,6 +8,7 @@ const Menu = ({ handleClick }: {
       <menu id="project-menu">
         <li><a href="#tabs" onClick={(event) => handleClick(event, '#tabs')}>Tabs</a></li>
         <li><a href="#tic-tac-toe" onClick={(event) => handleClick(event, '#tic-tac-toe')}>Tic Tac Toe</a></li>
+        <li><a href="#wordle" onClick={(event) => handleClick(event, '#wordle')}>Wordle</a></li>
       </menu>
     </section>
   )

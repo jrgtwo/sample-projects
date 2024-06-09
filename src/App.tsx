@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import { Tabs } from './projects/tabs'
 import { TicTacToe } from './projects/tic-tac-toe'
+import { Wordle } from './projects/wordle'
 import { Menu } from './base/Menu'
 import { Header } from './base/Header'
 
@@ -25,6 +26,7 @@ function App() {
       <div id="card-container">
         {page === 'tabs' && <Tabs />}
         {page === 'tic-tac-toe' && <TicTacToe />}
+        {page === 'wordle' && <Wordle />}
       </div>
     </>
   )

@@ -49,13 +49,11 @@ const Tabs = () => {
   return (
     <>
       <h1>Tabs</h1>
-      {topic.length > 0 &&
-        <p>Current Tab is {topic}</p>
-      }
       <menu>
         {
           Object.keys(TAB_CARD_LIST).map((item) => (
             <TabMenuItem
+              key={item}
               name={TAB_CARD_LIST[item]?.menuName || item}
               itemTopic={item}
               setTopic={setTopic}

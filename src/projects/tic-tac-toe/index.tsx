@@ -3,9 +3,6 @@ import './styles.css'
 
 
 const TicTacToe = () => {
-
-
-
   return (
     <Board />
   )
