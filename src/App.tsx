@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react'
 import { Tabs } from './projects/tabs'
 import { TicTacToe } from './projects/tic-tac-toe'
 import { Wordle } from './projects/wordle'
+import { UserInputs } from './projects/user-inputs'
 import { Menu } from './base/Menu'
 import { Header } from './base/Header'
 
@@ -27,6 +28,7 @@ function App() {
         {page === 'tabs' && <Tabs />}
         {page === 'tic-tac-toe' && <TicTacToe />}
         {page === 'wordle' && <Wordle />}
+        {page === 'user-inputs' && <UserInputs />}
       </div>
     </>
   )
