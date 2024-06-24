@@ -1,72 +1,35 @@
-import { useState, useCallback, useEffect } from 'react'
-import type { TabCardListConfigType, TabCardListConfigItemType, TabMenuItemProps } from './config';
-import { TAB_CARD_LIST } from './config';
+import { useState } from 'react'
+import { TAB_CARD_LIST, TabCardListConfigType } from './config';
+import { TabMenuItem } from './components/TabMenuItem';
+import { TabCards } from './components/TabCards';
 
-const TabMenuItem = (props: TabMenuItemProps) => {
-  const {
-    name,
-    itemTopic,
-    setTopic
-  } = props;
+const Tabs = ({ tabCardList }: { tabCardList: TabCardListConfigType }) => {
 
-  const handleClick = useCallback(() => {
-    setTopic(itemTopic)
-  }, [setTopic, itemTopic])
-
-  return (
-    <li>
-      <button onClick={handleClick}>{name}</button>
-    </li>
-  )
-}
-
-const TabCards = (props: { topic: string, tabCardList: TabCardListConfigType }) => {
-  const {
-    topic,
-    tabCardList
-  } = props;
-
-  const [currTab, setCurrTab] = useState<TabCardListConfigItemType['component']>(tabCardList[topic]?.component)
-
-  useEffect(() => {
-    setCurrTab(tabCardList[topic]?.component)
-  }, [tabCardList, topic])
+  const [topic, setTopic] = useState<number>(0)
+  const [cardList] = useState(tabCardList || TAB_CARD_LIST)
 
   return (
     <>
-      <p>Current tab is set to {topic}</p>
-      {currTab}
-    </>
-  )
-}
-
-
-
-const Tabs = () => {
-
-  const [topic, setTopic] = useState<string>('')
-
-  return (
-    <>
-      <h1>Tabs</h1>
+      {
+        cardList?.heading &&
+        <h1>{cardList.heading}</h1>}
       <menu>
         {
-          Object.keys(TAB_CARD_LIST).map((item) => (
+          cardList.tabData.map((item, index) => (
             <TabMenuItem
-              key={item}
-              name={TAB_CARD_LIST[item]?.menuName || item}
-              itemTopic={item}
+              key={index}
+              name={item.menuName}
+              index={index}
               setTopic={setTopic}
             />
           ))
         }
       </menu>
-      {topic.length > 0 &&
-        <section>
-          <TabCards
-            topic={topic}
-            tabCardList={TAB_CARD_LIST} />
-        </section>
+      {<section>
+        <TabCards
+          topic={topic}
+          tabCardList={cardList.tabData} />
+      </section>
       }
     </>
   )
