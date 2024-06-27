@@ -2,6 +2,7 @@ import { useCallback } from 'react'
 import type { TabMenuItemProps } from '../config';
 const TabMenuItem = (props: TabMenuItemProps) => {
   const {
+    topic,
     name,
     index,
     setTopic
@@ -13,7 +14,10 @@ const TabMenuItem = (props: TabMenuItemProps) => {
 
   return (
     <li>
-      <button onClick={handleClick}>{name}</button>
+      <button
+        className={`${topic === index ? 'active' : ''}`}
+        onClick={handleClick}
+      >{name}</button>
     </li>
   )
 }

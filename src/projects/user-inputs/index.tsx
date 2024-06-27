@@ -1,12 +1,14 @@
 import { TextInputs } from './components/TextInputs'
 import { FormSubmission } from './components/FormSubmission'
 import { Tabs } from '../tabs/index'
+import './user-inputs.css'
 
 function UserInputs() {
 
   return (
     <section>
       <Tabs
+        className='user-input-tabs'
         tabCardList={{
           heading: 'Input Playground',
           tabData: [

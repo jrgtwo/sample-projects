@@ -1,4 +1,5 @@
 export type TabMenuItemProps = {
+  topic: number,
   name: string,
   index: number,
   setTopic: (arg0: number) => void

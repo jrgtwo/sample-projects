@@ -30,7 +30,7 @@ function TextInputs({ count }: { count: number }) {
       <h2>Text Inputs</h2>
       {
         inputs.map(({ tooShort }, idx) => (
-          <div>
+          <div className="input-wrapper" key={idx}>
             <input
               type='text'
               onChange={(event) => onChange(event, idx)} />
