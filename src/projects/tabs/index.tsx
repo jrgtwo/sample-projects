@@ -5,7 +5,7 @@ import { TabCards } from './components/TabCards';
 
 const Tabs = ({ tabCardList, className }:
   {
-    tabCardList: TabCardListConfigType, className: string
+    tabCardList?: TabCardListConfigType, className?: string
   }) => {
 
   const [topic, setTopic] = useState<number>(0)

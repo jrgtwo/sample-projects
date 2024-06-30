@@ -1,4 +1,11 @@
 # sample-projects
 Random react projects
 
-`pnpm run dev`
+Install
+`npm i`
+
+Run
+`npm run dev`
+
+Build
+`npm run build`
