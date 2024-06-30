@@ -26,6 +26,10 @@ body {
   min-height: 100vh;
 }
 
+input[type="submit"]:hover {
+  cursor: pointer;
+}
+
 #main-header {
   width: 1000px;
   padding: 24px;

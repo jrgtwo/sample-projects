@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react'
 import { useState } from 'react'
-import { UseDupe } from '../hooks/useDupe'
-import { DEFAULT_INPUT_TYPE } from '../types'
+import { UseDupe } from '../../hooks/useDupe'
+import { DEFAULT_INPUT_TYPE } from '../../types'
 
 const DEFAULT_INPUT_STATE: DEFAULT_INPUT_TYPE = {
   tooShort: false,

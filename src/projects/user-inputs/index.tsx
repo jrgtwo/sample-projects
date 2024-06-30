@@ -1,5 +1,5 @@
-import { TextInputs } from './components/TextInputs'
-import { FormSubmission } from './components/FormSubmission'
+import { TextInputs } from './sections/textInputs'
+import { FormSubmission } from './sections/formSubmission'
 import { Tabs } from '../tabs/index'
 import './user-inputs.css'
 
