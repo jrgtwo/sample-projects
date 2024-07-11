@@ -44,3 +44,10 @@
   font-size: 16px;
   font-weight: bold
 }
+
+.text-area-output p {
+  font-family: monospace;
+  line-height: 1.2em;
+  min-height: 1.2em;
+  white-space: pre-wrap
+}

@@ -1,5 +1,6 @@
 import { TextInputs } from './sections/textInputs'
 import { FormSubmission } from './sections/formSubmission'
+import { TextArea } from './sections/textArea'
 import { Tabs } from '../tabs/index'
 import './user-inputs.css'
 
@@ -19,6 +20,10 @@ function UserInputs() {
             {
               menuName: 'Form Submissions',
               component: <FormSubmission />
+            },
+            {
+              menuName: 'Text Areas',
+              component: <TextArea />
             }
           ]
         }} />
