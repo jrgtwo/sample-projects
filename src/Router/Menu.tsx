@@ -1,4 +1,4 @@
-import type { Routes } from "../types"
+import type { Routes } from "./types"
 const Menu = ({ routes, handleClick }: {
   handleClick: (event: React.MouseEvent<HTMLElement>, tab: string) => void,
   routes: Routes
