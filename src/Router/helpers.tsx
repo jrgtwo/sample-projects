@@ -1,0 +1,1 @@
+export const removeHash = (str: string) => str.replace('#', '')
