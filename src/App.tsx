@@ -3,6 +3,7 @@ import { Tabs } from './projects/tabs'
 import { TicTacToe } from './projects/tic-tac-toe'
 import { Wordle } from './projects/wordle'
 import { UserInputs } from './projects/user-inputs'
+import { TextEditor } from './projects/text-editor'
 import { Menu } from './base/Menu'
 import { Header } from './base/Header'
 
@@ -29,6 +30,7 @@ function App() {
         {page === 'tic-tac-toe' && <TicTacToe />}
         {page === 'wordle' && <Wordle />}
         {page === 'user-inputs' && <UserInputs />}
+        {page === 'text-editor' && <TextEditor />}
       </div>
     </>
   )
