@@ -1,4 +1,4 @@
-import type { Routes as RoutesType } from "../types"
+import type { Routes as RoutesType } from "../Router/types"
 import { Tabs } from "../projects/tabs"
 import { TicTacToe } from "../projects/tic-tac-toe"
 import { UserInputs } from "../projects/user-inputs"

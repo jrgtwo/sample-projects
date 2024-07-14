@@ -1,4 +1,4 @@
-import type { Routes } from "../types"
+import type { Routes } from "./types"
 function CardContainer({ routes, page }: {
   routes: Routes,
   page: string
