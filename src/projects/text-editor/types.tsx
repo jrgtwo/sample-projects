@@ -1,0 +1,1 @@
+export type CURSOR_SETTER = (cursor: number[]) => void

@@ -1,30 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './styles.css'
-
+import { handleEditorMouseDown } from './handlers/handlerEditorMouseDown'
+import { handleEditorMouseUp } from './handlers/handleEditorMouseUp'
 const demoText = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi rerum dolor necessitatibus numquam aliquam, inventore repellat rem aliquid commodi sunt obcaecati, quod porro esse asperiores? Mollitia obcaecati blanditiis accusantium ipsum?'
-
 
 const TextEditor = () => {
 
-  const [pages, setPages] = useState([demoText])
+  const [pages] = useState([demoText])
   const [cursorStart, setCursorStart] = useState([0, 0])
   const [cursorEnd, setCursorEnd] = useState([0, 0])
-
-  function handleMouseDown(event) {
-    event.preventDefault()
-
-    const curPos = event.target.dataset.idx.split(',')
-    const newCursorStart = [parseInt(curPos[0]), parseInt(curPos[1])]
-    setCursorStart(newCursorStart)
-    setCursorEnd(newCursorStart)
-  }
-  function handleMouseUp(event) {
-    event.preventDefault()
-
-    const curPos = event.target.dataset.idx.split(',')
-    const newCursorEnd = [parseInt(curPos[0]), parseInt(curPos[1])]
-    setCursorEnd(newCursorEnd)
-  }
 
   return (
     <div className="text-editor">
@@ -32,8 +16,11 @@ const TextEditor = () => {
         <button name="bold">B</button>
         <button name="bold">I</button>
       </section>
-      <section className="document" onMouseUp={handleMouseUp} onMouseDown={handleMouseDown}>
-        {cursorStart} {cursorEnd}
+      <section
+        className="document"
+        onMouseUp={(event) => handleEditorMouseUp(event, setCursorEnd)}
+        onMouseDown={(event) => handleEditorMouseDown(event, setCursorStart, setCursorEnd)}>
+        <p>Current Cursor Position [{cursorStart}, {cursorEnd}]</p>
         {
           pages.map((page: string, pageIdx) => (
             <div className="page" data-id={pageIdx}>
@@ -43,8 +30,8 @@ const TextEditor = () => {
                     data-idx={[pageIdx, index]}
                     className={
                       (
-                        (pageIdx >= cursorStart[0] && pageIdx <= cursorEnd[0])
-                        && (index >= cursorStart[1] && index <= cursorEnd[1])
+                        (pageIdx >= Math.min(cursorStart[0], cursorEnd[0])) && (pageIdx <= Math.max(cursorStart[0], cursorEnd[0]))
+                        && (index >= Math.min(cursorStart[1], cursorEnd[1])) && (index <= Math.max(cursorStart[1], cursorEnd[1]))
                       ) ? 'selected' : ''
                     }
                   >
