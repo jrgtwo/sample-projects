@@ -1,14 +1,40 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './styles.css'
 import { handleEditorMouseDown } from './handlers/handlerEditorMouseDown'
 import { handleEditorMouseUp } from './handlers/handleEditorMouseUp'
+import { isCursorSelected, isSingleCursor, getCursorPage, getCursorIndex } from './helpers/cursorSelect'
+
 const demoText = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi rerum dolor necessitatibus numquam aliquam, inventore repellat rem aliquid commodi sunt obcaecati, quod porro esse asperiores? Mollitia obcaecati blanditiis accusantium ipsum?'
+
 
 const TextEditor = () => {
 
-  const [pages] = useState([demoText])
+  const [pages, setPages] = useState(demoText)
   const [cursorStart, setCursorStart] = useState([0, 0])
   const [cursorEnd, setCursorEnd] = useState([0, 0])
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      event.preventDefault()
+
+      if (isSingleCursor(cursorStart, cursorEnd)) {
+        const cursorIndex = getCursorIndex(cursorStart)
+        let newPages = pages
+        const newPageLeft = newPages.slice(0, cursorIndex)
+        const newPageRight = newPages.slice(cursorIndex)
+        newPages = `${newPageLeft}${event.key}${newPageRight}`
+
+        setPages(() => newPages)
+        setCursorStart((lastStart) => [0, lastStart[1] + 1])
+        setCursorEnd((lastEnd) => [0, lastEnd[1] + 1])
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [cursorEnd, cursorStart, pages])
 
   return (
     <div className="text-editor">
@@ -22,25 +48,22 @@ const TextEditor = () => {
         onMouseDown={(event) => handleEditorMouseDown(event, setCursorStart, setCursorEnd)}>
         <p>Current Cursor Position [{cursorStart}, {cursorEnd}]</p>
         {
-          pages.map((page: string, pageIdx) => (
-            <div className="page" data-id={pageIdx}>
-              <p>{
-                page.split('').map((item, index) => (
-                  <span
-                    data-idx={[pageIdx, index]}
-                    className={
-                      (
-                        (pageIdx >= Math.min(cursorStart[0], cursorEnd[0])) && (pageIdx <= Math.max(cursorStart[0], cursorEnd[0]))
-                        && (index >= Math.min(cursorStart[1], cursorEnd[1])) && (index <= Math.max(cursorStart[1], cursorEnd[1]))
-                      ) ? 'selected' : ''
-                    }
-                  >
-                    {item}
-                  </span>)
-                )
-              }</p>
-            </div>
-          ))
+          <div className="page" data-id={0}>
+            <p>{
+              pages.split('').map((item, index) => (
+                <span
+                  data-idx={[0, index]}
+                  className={`${!isCursorSelected(0, index, cursorStart, cursorEnd)
+                      ? ''
+                      : isSingleCursor(cursorStart, cursorEnd)
+                        ? 'single selected'
+                        : 'selected '
+                    }`}>
+                  {item}
+                </span>)
+              )
+            }</p>
+          </div>
         }
 
       </section >

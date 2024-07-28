@@ -5,7 +5,6 @@ const handleEditorMouseUp = (
   setCursorEnd: CURSOR_SETTER) => {
   event.preventDefault()
 
-  //if (cursorStart[0] === -1 || cursorStart[1] === -1) return
   if (!(event.target instanceof HTMLSpanElement)) return
 
   const elemCursorPos = event.target?.dataset?.idx
