@@ -1,12 +1,4 @@
-type CURSOR = number[]
-type CURSOR_SELECT = {
-  pageIdx: number,
-  cursorStart: CURSOR,
-  cursorEnd: CURSOR,
-  index: number,
-  cursorIndex: number,
-
-}
+import { CURSOR, CURSOR_SELECT } from "../types"
 
 function isCursorPage(
   pageIdx: CURSOR_SELECT['pageIdx'],
